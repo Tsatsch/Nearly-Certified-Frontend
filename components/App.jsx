@@ -112,19 +112,34 @@ console.log('storage: ', Storage.privateGet('pendingApplication'))
 if (state.currentAccountId.length === 0)
   state.currentAccountId = getEVMAccountId()
 
+let userComponentToRender = null
+if (state.currentAccountId.length > 0) {
+  const status = Storage.privateGet(state.currentAccountId)
+  userComponentToRender =
+    status === 'pending' || 'rejected' ? (
+      <Widget src="sipars.near/widget/AfterSubmission" props={{ status }} />
+    ) : status ? (
+      <div>Cred is approved</div>
+    ) : (
+      <Widget src="sipars.near/widget/InputForm" props={{ state }} />
+    )
+}
+const isAdmin = true
+
 return (
   <>
     {state.currentAccountId.length > 0 ? (
-      //   <Widget src="sipars.near/widget/User" props={{ state }} />
-      {
-        /* <Widget
-        src="sipars.near/widget/SimpleTable"
-        props={{
-          pendingApplications: Storage.privateGet('pendingApplications'),
-          updatePendingApplications,
-        }}
-      /> */
-      }
+      isAdmin ? (
+        <Widget
+          src="sipars.near/widget/SimpleTable"
+          props={{
+            pendingApplications: Storage.privateGet('pendingApplications'),
+            updatePendingApplications,
+          }}
+        />
+      ) : (
+        userComponentToRender
+      )
     ) : (
       <LoginContainer>
         <Heading>Welcome to the Login Page</Heading>
