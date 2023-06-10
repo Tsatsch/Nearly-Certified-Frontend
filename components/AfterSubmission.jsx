@@ -103,7 +103,7 @@ if (appStatus === "pending") {
           ?
         </text>
       </FinishedIcon>
-      <Heading>Ops! We cannot find your application!</Heading>
+      <Heading>Oops! We cannot find your application!</Heading>
       <SubHeading>
         Please verify the data and contact the concerned authority.
       </SubHeading>
