@@ -1,1 +1,2 @@
-# Nearly-Certified_Frontend
+# near
+ETHPrague collaboration repo
