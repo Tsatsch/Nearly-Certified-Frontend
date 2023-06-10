@@ -86,7 +86,7 @@ const handleSubmit = (e) => {
 return (
   <Container>
     <FormContainer onSubmit={handleSubmit}>
-      <Heading>Please fill in the details.</Heading>
+      <Heading>Please fill in the details</Heading>
       <FormGroup>
         <Label htmlFor="fullName">Name</Label>
         <input
