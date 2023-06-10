@@ -1,7 +1,7 @@
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Center vertically */
+  justify-content: center;
   align-items: center;
   height: 80vh;
   background-color: #1c1f2a;
