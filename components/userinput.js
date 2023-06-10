@@ -3,7 +3,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  height: 80vh; /* Adjust the height based on your layout */
+  height: 80vh;
   background-color: #1c1f2a;
 `;
 
@@ -33,7 +33,7 @@ const Label = styled.label`
   color: #e3e6ec;
   margin-bottom: 0.5rem;
   font-weight: bold;
-  min-width: 100px; /* Adjust the width as needed */
+  min-width: 100px;
 `;
 
 const Input = styled.input`
@@ -74,7 +74,7 @@ State.init({
 return (
   <Container>
     <FormContainer>
-      <Heading>Hey! Let's see your data</Heading>
+      <Heading>Hey, let's make you officially certified!</Heading>
       <FormGroup>
         <Label htmlFor="fullname">Name</Label>
         <Input
