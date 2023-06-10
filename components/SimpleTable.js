@@ -3,7 +3,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  height: 80vh; /* Adjust the height based on your layout */
+  height: 80vh;
   background-color: #1c1f2a;
 `;
 
@@ -38,7 +38,7 @@ const StyledTable = styled.table`
 const TableHeader = styled.th`
   border: 1px solid #e3e6ec;
   padding: 8px;
-  text-align: center; /* Add text-align: center */
+  text-align: center;
   background-color: #161622;
   color: #e3e6ec;
 `;
@@ -46,7 +46,7 @@ const TableHeader = styled.th`
 const TableData = styled.td`
   border: 1px solid #e3e6ec;
   padding: 8px;
-  text-align: center; /* Add text-align: center */
+  text-align: center;
   background-color: #161622;
   color: #e3e6ec;
 `;
