@@ -36,10 +36,18 @@ const Label = styled.label`
   min-width: 100px;
 `;
 
-const Input = styled.input`
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+const SubmitButton = styled.button`
+  background-color: #8f73ff;
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #b290ff;
+  }
 `;
 
 const Footer = styled.div`
@@ -65,58 +73,56 @@ const FooterText = styled.p`
   color: #e3e6ec;
 `;
 
-State.init({
-  fullname,
-  matriculationnumber,
-  email,
-});
+const handleSubmit = (e) => {
+  e.preventDefault();
+  const data = {
+    fullname: formData.fullname,
+    matriculationnumber: formData.matriculationnumber,
+    email: formData.email,
+  };
+  props.addApplication(data);
+};
 
 return (
   <Container>
-    <FormContainer>
-      <Heading>Hey! Let's see your data</Heading>
+    <FormContainer onSubmit={handleSubmit}>
+      <Heading>Please fill in the details.</Heading>
       <FormGroup>
         <Label htmlFor="fullname">Name</Label>
-        <Input
+        <input
           type="text"
           id="fullname"
           value={formData.fullname}
-          onChange={(fullname) => State.update({ fullname })}
+          onChange={(e) =>
+            setFormData({ ...formData, fullname: e.target.value })
+          }
           required
         />
       </FormGroup>
       <FormGroup>
         <Label htmlFor="matriculationnumber">Matriculation Number</Label>
-        <Input
+        <input
           type="text"
           id="matriculationnumber"
           value={formData.matriculationnumber}
-          onChange={(matriculationnumber) =>
-            State.update({ matriculationnumber })
+          onChange={(e) =>
+            setFormData({ ...formData, matriculationnumber: e.target.value })
           }
           required
         />
       </FormGroup>
       <FormGroup>
         <Label htmlFor="email">Email</Label>
-        <Input
+        <input
           type="text"
           id="email"
           value={formData.email}
-          onChange={(email) => State.update({ email })}
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           required
         />
       </FormGroup>
-      <br></br>
-      <CommitButton
-        data={{
-          fullname: state.fullname,
-          matriculationnumber: state.matriculationnumber,
-          email: state.email,
-        }}
-      >
-        Submit
-      </CommitButton>
+      <br />
+      <SubmitButton type="submit">Submit</SubmitButton>
     </FormContainer>
     <Footer>
       <HorizontalLine />
