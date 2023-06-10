@@ -74,7 +74,7 @@ State.init({
 return (
   <Container>
     <FormContainer>
-      <Heading>Hey, let's make you officially certified!</Heading>
+      <Heading>Hey! Let's see your data</Heading>
       <FormGroup>
         <Label htmlFor="fullname">Name</Label>
         <Input
