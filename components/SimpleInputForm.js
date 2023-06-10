@@ -76,8 +76,8 @@ const FooterText = styled.p`
 const handleSubmit = (e) => {
   e.preventDefault();
   const data = {
-    fullname: formData.fullname,
-    matriculationnumber: formData.matriculationnumber,
+    fullName: formData.fullName,
+    matriculationNumber: formData.matriculationNumber,
     email: formData.email,
   };
   props.addApplication(data);
@@ -88,25 +88,25 @@ return (
     <FormContainer onSubmit={handleSubmit}>
       <Heading>Please fill in the details.</Heading>
       <FormGroup>
-        <Label htmlFor="fullname">Name</Label>
+        <Label htmlFor="fullName">Name</Label>
         <input
           type="text"
-          id="fullname"
-          value={formData.fullname}
+          id="fullName"
+          value={formData.fullName}
           onChange={(e) =>
-            setFormData({ ...formData, fullname: e.target.value })
+            setFormData({ ...formData, fullName: e.target.value })
           }
           required
         />
       </FormGroup>
       <FormGroup>
-        <Label htmlFor="matriculationnumber">Matriculation Number</Label>
+        <Label htmlFor="matriculationNumber">Matriculation Number</Label>
         <input
           type="text"
-          id="matriculationnumber"
-          value={formData.matriculationnumber}
+          id="matriculationNumber"
+          value={formData.matriculationNumber}
           onChange={(e) =>
-            setFormData({ ...formData, matriculationnumber: e.target.value })
+            setFormData({ ...formData, matriculationNumber: e.target.value })
           }
           required
         />
