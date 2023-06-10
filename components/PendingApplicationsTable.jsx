@@ -124,7 +124,7 @@ const FooterText = styled.p`
   color: #e3e6ec;
 `;
 
-const props = [
+/*const props = [
   {
     address: "0x833E1a453bE1364b186E540fE84f7ad3bddA559B",
     fullName: "John Doe",
@@ -151,6 +151,7 @@ const props = [
     matriculationNumber: 2382837825,
   }
 ];
+*/
 
 return (
   <Container>
@@ -167,7 +168,7 @@ return (
           </tr>
         </thead>
         <tbody>
-          {props.map((item) => (
+          {props.pendingApplications.map((item) => (
             <TableRow key={item.matriculationNumber}>
               <TableData>{item.address}</TableData>
               <TableData>{item.fullName}</TableData>
