@@ -50,20 +50,67 @@ const FooterText = styled.p`
   color: #e3e6ec;
 `;
 
-return (
-  <Container>
-    <FinishedIcon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="11" fill="#8f73ff" />
-      <path
-        fill="#FFF"
-        d="M9.292 16.708l-4.2-4.2a.999.999 0 1 1 1.414-1.414L9 13.586l7.293-7.292a.999.999 0 1 1 1.414 1.414l-8 8a.999.999 0 0 1-1.414 0z"
-      />
-    </FinishedIcon>
-    <Heading>Thank you for submitting the application!</Heading>
-    <SubHeading>Your application is pending review.</SubHeading>
-    <Footer>
-      <HorizontalLine />
-      <FooterText>With Love from TBC &#x2665;</FooterText>
-    </Footer>
-  </Container>
-);
+const appStatus = props.status;
+
+if (appStatus === "pending") {
+  return (
+    <Container>
+      <FinishedIcon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <circle cx="4" cy="12" r="2" fill="#8f73ff" />
+        <circle cx="12" cy="12" r="2" fill="#8f73ff" />
+        <circle cx="20" cy="12" r="2" fill="#8f73ff" />
+      </FinishedIcon>
+      <Heading>Thank you for submitting the application!</Heading>
+      <SubHeading>Your application is pending review.</SubHeading>
+      <Footer>
+        <HorizontalLine />
+        <FooterText>With Love from TBC &#x2665;</FooterText>
+      </Footer>
+    </Container>
+  );
+} else if (appStatus === "rejected") {
+  return (
+    <Container>
+      <FinishedIcon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path
+          fill="#8f73ff"
+          d="M18.364 5.636a.999.999 0 0 0-1.414 0L12 10.586 7.05 5.636a.999.999 0 1 0-1.414 1.414L10.586 12l-4.95 4.95a.999.999 0 1 0 1.414 1.414L12 13.414l4.95 4.95a.999.999 0 1 0 1.414-1.414L13.414 12l4.95-4.95a.999.999 0 0 0 0-1.414z"
+        />
+      </FinishedIcon>
+      <Heading>Your application was rejected!</Heading>
+      <SubHeading>
+        Please verify the data and contact the concerned authority.
+      </SubHeading>
+      <Footer>
+        <HorizontalLine />
+        <FooterText>With Love from TBC &#x2665;</FooterText>
+      </Footer>
+    </Container>
+  );
+} else {
+  return (
+    <Container>
+      <FinishedIcon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="11" fill="#8f73ff" />
+        <text
+          x="50%"
+          y="50%"
+          textAnchor="middle"
+          fill="#fff"
+          fontSize="18"
+          dy=".3em"
+        >
+          ?
+        </text>
+      </FinishedIcon>
+      <Heading>Ops! We cannot find your application!</Heading>
+      <SubHeading>
+        Please verify the data and contact the concerned authority.
+      </SubHeading>
+      <Footer>
+        <HorizontalLine />
+        <FooterText>With Love from TBC &#x2665;</FooterText>
+      </Footer>
+    </Container>
+  );
+}
