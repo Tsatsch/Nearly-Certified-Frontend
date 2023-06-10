@@ -3,10 +3,11 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  height: 80vh;
+  height: 70vh; 
   background-color: #1c1f2a;
+  position: relative;
+  overflow-y: auto; 
 `;
-
 const Heading = styled.h1`
   margin-top: 30px;
   text-align: center;
@@ -27,6 +28,7 @@ const TableContainer = styled.div`
   align-items: center;
   max-width: 600px;
   margin: 0 auto;
+  position: relative;
 `;
 
 const StyledTable = styled.table`
@@ -43,23 +45,69 @@ const TableHeader = styled.th`
   color: #e3e6ec;
 `;
 
+const TableRow = styled.tr`
+  &:nth-child(even) {
+    background-color: #161622;
+  }
+`;
+
 const TableData = styled.td`
   border: 1px solid #e3e6ec;
   padding: 8px;
   text-align: center;
-  background-color: #161622;
   color: #e3e6ec;
+  width: max-content;
+
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const AcceptButton = styled.button`
+  background-color: #6c5db3;
+  color: white;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-right: 8px;
+  
+  &:hover {
+    background-color: #8a7dbd;
+  }
+`;
+
+const handleAcceptClick = (item) => {
+  console.log("Accepting:", item.fullname, item.matriculationnumber);
+};
+
+const RejectButton = styled.button`
+  background-color: #c33b3b;
+  color: white;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #d16666;
+  }
+`;
+
+const handleRejectClick = (item) => {
+  console.log("Rejecting:", item.fullname, item.matriculationnumber);
+};
 const Footer = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
+  margin-bottom: 20px;
 `;
 
 const HorizontalLine = styled.hr`
@@ -74,40 +122,44 @@ const FooterText = styled.p`
   color: #e3e6ec;
 `;
 
+/*const props = [
+  { fullname: "John Doe", matriculationnumber: 2382837825 },
+  { fullname: "Matri KA", matriculationnumber: 2382837825 },
+  { fullname: "HAha Doe", matriculationnumber: 2382837825 },
+  { fullname: "ajsnjans KA", matriculationnumber: 2382837825 },
+];
+*/
+
 return (
   <Container>
     <TableContainer>
       <Heading>Admin Panel</Heading>
-      <TableHeading>User Data</TableHeading>
+      <TableHeading>Applications</TableHeading>
       <StyledTable>
         <thead>
           <tr>
             <TableHeader>Name</TableHeader>
             <TableHeader>Matriculation Nr.</TableHeader>
-            <TableHeader>Email</TableHeader>
+            <TableHeader>Action</TableHeader>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <TableData>Frederik Mueller</TableData>
-            <TableData>12897646</TableData>
-            <TableData>frederik.mueller@tum.de</TableData>
-          </tr>
-          <tr>
-            <TableData>Markus Schmelzner</TableData>
-            <TableData>19087679</TableData>
-            <TableData>markus.schmelzner@tum.de</TableData>
-          </tr>
-          <tr>
-            <TableData>Pavel Ivanov</TableData>
-            <TableData>19867890</TableData>
-            <TableData>pavel.ivanov@tum.de</TableData>
-          </tr>
-          <tr>
-            <TableData>Alexander Visitzki</TableData>
-            <TableData>10978960</TableData>
-            <TableData>alexander.visitzki@tum.de</TableData>
-          </tr>
+          {props.map((item) => (
+            <TableRow key={item.matriculationnumber}>
+              <TableData>{item.fullname}</TableData>
+              <TableData>{item.matriculationnumber}</TableData>
+              <TableData>
+                <ButtonContainer>
+                  <AcceptButton onClick={() => handleAcceptClick(item)}>
+                    Accept
+                  </AcceptButton>
+                  <RejectButton onClick={() => handleRejectClick(item)}>
+                    Reject
+                  </RejectButton>
+                </ButtonContainer>
+              </TableData>
+            </TableRow>
+          ))}
         </tbody>
       </StyledTable>
     </TableContainer>
