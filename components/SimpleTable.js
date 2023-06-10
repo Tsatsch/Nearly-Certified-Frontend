@@ -26,7 +26,7 @@ const TableContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 600px;
+  max-width: 700px;
   margin: 0 auto;
   position: relative;
 `;
@@ -53,10 +53,11 @@ const TableRow = styled.tr`
 
 const TableData = styled.td`
   border: 1px solid #e3e6ec;
-  padding: 8px;
+  padding: 4px;
   text-align: center;
   color: #e3e6ec;
   width: max-content;
+  font-size: 12px
 
 `;
 
@@ -81,7 +82,7 @@ const AcceptButton = styled.button`
 `;
 
 const handleAcceptClick = (item) => {
-  console.log("Accepting:", item.fullname, item.matriculationnumber);
+  props.updatePendingApplications("accept", item);
 };
 
 const RejectButton = styled.button`
@@ -99,8 +100,9 @@ const RejectButton = styled.button`
 `;
 
 const handleRejectClick = (item) => {
-  console.log("Rejecting:", item.fullname, item.matriculationnumber);
+  props.updatePendingApplications("reject", item);
 };
+
 const Footer = styled.div`
   position: relative;
   display: flex;
@@ -122,22 +124,43 @@ const FooterText = styled.p`
   color: #e3e6ec;
 `;
 
-/*const props = [
-  { fullname: "John Doe", matriculationnumber: 2382837825 },
-  { fullname: "Matri KA", matriculationnumber: 2382837825 },
-  { fullname: "HAha Doe", matriculationnumber: 2382837825 },
-  { fullname: "ajsnjans KA", matriculationnumber: 2382837825 },
+const props = [
+  {
+    address: "0x833E1a453bE1364b186E540fE84f7ad3bddA559B",
+    fullName: "John Doe",
+    matriculationNumber: 2382837825,
+  },
+  {
+    address: "0x833E1a453bE1364b186E540fE84f7ad3bddA559B",
+    fullName: "John Doe",
+    matriculationNumber: 2382837825,
+  },
+  {
+    address: "0x833E1a453bE1364b186E540fE84f7ad3bddA559B",
+    fullName: "John Doe",
+    matriculationNumber: 2382837825,
+  },
+  {
+    address: "0x833E1a453bE1364b186E540fE84f7ad3bddA559B",
+    fullName: "Alexander Durst Frolov",
+    matriculationNumber: 2382837825,
+  },
+  {
+    address: "0x833E1a453bE1364b186E540fE84f7ad3bddA559B",
+    fullName: "John Doe",
+    matriculationNumber: 2382837825,
+  }
 ];
-*/
 
 return (
   <Container>
     <TableContainer>
       <Heading>Admin Panel</Heading>
-      <TableHeading>Applications</TableHeading>
+      <TableHeading>Pending Applications</TableHeading>
       <StyledTable>
         <thead>
           <tr>
+            <TableHeader>Address</TableHeader>
             <TableHeader>Name</TableHeader>
             <TableHeader>Matriculation Nr.</TableHeader>
             <TableHeader>Action</TableHeader>
@@ -145,9 +168,10 @@ return (
         </thead>
         <tbody>
           {props.map((item) => (
-            <TableRow key={item.matriculationnumber}>
-              <TableData>{item.fullname}</TableData>
-              <TableData>{item.matriculationnumber}</TableData>
+            <TableRow key={item.matriculationNumber}>
+              <TableData>{item.address}</TableData>
+              <TableData>{item.fullName}</TableData>
+              <TableData>{item.matriculationNumber}</TableData>
               <TableData>
                 <ButtonContainer>
                   <AcceptButton onClick={() => handleAcceptClick(item)}>
