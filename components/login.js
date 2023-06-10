@@ -14,7 +14,7 @@ const LoginContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  height: 80vh; /* Adjust the height based on your layout */
+  height: 80vh;
   background-color: #1c1f2a;
 `;
 
@@ -57,7 +57,7 @@ return (
     <ButtonContainer>
       <Web3Connect
         className="swap-button-enabled swap-button-text p-2"
-        connectLabel="Connect with Web3"
+        connectLabel="Connect with wallet"
       />
     </ButtonContainer>
     <Footer>
