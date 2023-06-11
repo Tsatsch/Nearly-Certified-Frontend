@@ -3,7 +3,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  height: 70vh; 
+  height: 80vh;
   background-color: #1c1f2a;
   position: relative;
   overflow-y: auto; 
