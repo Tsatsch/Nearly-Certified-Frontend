@@ -9,7 +9,7 @@ const Container = styled.div`
 
 const Heading = styled.h1`
   margin-top: 30px;
-  margin-bottom: 60px;
+  margin-bottom: 10px;
   text-align: center;
   color: #8f73ff;
 `
@@ -66,6 +66,7 @@ const HorizontalLine = styled.hr`
   border: none;
   border-top: 1px solid #e3e6ec;
   margin-bottom: 10px;
+  margin-top: 50px;
 `
 
 const FooterText = styled.p`
@@ -90,7 +91,7 @@ const onBtnClick = () => {
     fullName: state.fullName,
     matriculationNumber: state.matriculationNumber,
     email: state.email,
-    address: props.state.currentAccountId,
+    // address: props.state.currentAccountId,
   }
   props.addPendingApplication(retVal)
 }
