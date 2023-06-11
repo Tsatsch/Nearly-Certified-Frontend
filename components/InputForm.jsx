@@ -73,14 +73,26 @@ const FooterText = styled.p`
   color: #e3e6ec;
 `;
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-  const data = {
-    fullName: formData.fullName,
-    matriculationNumber: formData.matriculationNumber,
-    email: formData.email,
+State.init({ fullName, matriculationNumber, email });
+
+const onFullNameChange = ({ target }) => {
+  State.update({ fullName: target.value });
+};
+const onMatriculationNumberChange = ({ target }) => {
+  State.update({ matriculationNumber: target.value });
+};
+const onEmailChange = ({ target }) => {
+  State.update({ email: target.value });
+};
+
+const onBtnClick = () => {
+  const retVal = {
+    fullName: state.fullName,
+    matriculationNumber: state.matriculationNumber,
+    email: state.email,
+    address: props.state.currentAccountId,
   };
-  props.addApplication(data);
+  props.addApplication(retVal);
 };
 
 return (
@@ -89,40 +101,20 @@ return (
       <Heading>Please fill in the details</Heading>
       <FormGroup>
         <Label htmlFor="fullName">Name</Label>
-        <input
-          type="text"
-          id="fullName"
-          value={formData.fullName}
-          onChange={(e) =>
-            setFormData({ ...formData, fullName: e.target.value })
-          }
-          required
-        />
+        <input onChange={onFullNameChange} />
       </FormGroup>
       <FormGroup>
         <Label htmlFor="matriculationNumber">Matriculation Number</Label>
-        <input
-          type="text"
-          id="matriculationNumber"
-          value={formData.matriculationNumber}
-          onChange={(e) =>
-            setFormData({ ...formData, matriculationNumber: e.target.value })
-          }
-          required
-        />
+        <input onChange={onMatriculationNumberChange} />
       </FormGroup>
       <FormGroup>
         <Label htmlFor="email">Email</Label>
-        <input
-          type="text"
-          id="email"
-          value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          required
-        />
+        <input onChange={onEmailChange} />
       </FormGroup>
       <br />
-      <SubmitButton type="submit">Submit</SubmitButton>
+      <SubmitButton type="submit" onClick={onBtnClick}>
+        Submit
+      </SubmitButton>
     </FormContainer>
     <Footer>
       <HorizontalLine />
