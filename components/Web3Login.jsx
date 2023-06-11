@@ -7,8 +7,16 @@ const SubHeading = styled.h2`
   color: #e3e6ec;
   margin-top: 20px;
   text-align: center;
+  font-size: 20px;
+`;
+
+const Heading3 = styled.h3`
+  color: #e3e6ec;
+  margin-top: 100px;
+  text-align: center;
   font-size: 18px;
 `;
+
 const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -19,7 +27,7 @@ const LoginContainer = styled.div`
 `;
 
 const ButtonContainer = styled.div`
-  margin-top: 120px;
+  margin-top: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,7 +61,10 @@ const FooterText = styled.p`
 return (
   <LoginContainer>
     <Heading>Welcome to the Login Page</Heading>
-    <SubHeading>Please login with your fancy wallet</SubHeading>
+    <SubHeading>
+      Start here with creation of an immutable and verifiable certificate
+    </SubHeading>
+    <Heading3>Please login with your fancy wallet</Heading3>
     <ButtonContainer>
       <Web3Connect
         className="swap-button-enabled swap-button-text p-2"
