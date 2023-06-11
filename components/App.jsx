@@ -61,18 +61,18 @@ const getEVMAccountId = () => {
   return ''
 }
 
-const fetchCred = () => {
-  return asyncFetch(
-    'https://9fe7-2a00-20-d049-b8aa-bdb9-9afa-8dfa-fa90.eu.ngrok.io/api/issue',
-    {
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-      mode: 'no-cors',
+const fetchCred = (application) => {
+  return asyncFetch('http://46.101.224.69:3001/api/issue', {
+    body: JSON.stringify({
+      did: application.address,
+      name: application.fullName,
+    }),
+    headers: {
+      'Content-Type': 'application/json',
     },
-  )
+    method: 'POST',
+    mode: 'no-cors',
+  })
 }
 
 // Update on Action from AdminPage
@@ -86,7 +86,7 @@ const updatePendingApplications = (action, application) => {
     const updatedAccepted = Storage.privateGet('acceptedApplications') || []
     updatedAccepted.push(application)
     Storage.privateSet('acceptedApplications', updatedAccepted)
-    fetchCred().then((res) => {
+    fetchCred(application).then((res) => {
       console.log('Resulting Credential: ', res)
       Storage.privateSet(application.address, res)
     })
@@ -101,39 +101,57 @@ const updatePendingApplications = (action, application) => {
 
 // Add a new pending application
 const addPendingApplication = (application) => {
+  console.log('inside pending add')
   const pendingApplications = Storage.privateGet('pendingApplications') || []
   pendingApplications.push(application)
   Storage.privateSet('pendingApplications', pendingApplications)
   Storage.privateSet(application.address, 'pending')
 }
 
-console.log('storage: ', Storage.privateGet('pendingApplication'))
+console.log('pending storage: ', Storage.privateGet('pendingApplications'))
+console.log('accepted storage: ', Storage.privateGet('acceptedApplications'))
+console.log('rejected storage: ', Storage.privateGet('rejectedApplications'))
+
+let userComponentToRender = null
 
 if (state.currentAccountId.length === 0)
   state.currentAccountId = getEVMAccountId()
 
-let userComponentToRender = null
 if (state.currentAccountId.length > 0) {
+    // Storage.privateSet('pendingApplications', undefined)
+    // Storage.privateSet('acceptedApplications', undefined)
+    // Storage.privateSet('rejectedApplications', undefined)
+  console.log('sss: ', state.currentAccountId, isAdmin)
   const status = Storage.privateGet(state.currentAccountId)
-  userComponentToRender =
-    status === 'pending' || 'rejected' ? (
-      <Widget src="sipars.near/widget/AfterSubmission" props={{ status }} />
-    ) : status ? (
-      <div>Cred is approved</div>
-    ) : (
-      <Widget src="sipars.near/widget/InputForm" props={{ state }} />
+  if (typeof status === 'undefined') {
+    userComponentToRender = (
+      <Widget
+        src="sipars.testnet/widget/InputForm"
+        props={{ state, addPendingApplication }}
+      />
     )
+  } else if (status === 'rejected' || status === 'pending') {
+    userComponentToRender = (
+      <Widget src="sipars.testnet/widget/AfterSubmission" props={{ status }} />
+    )
+  } else {
+    const cred = Storage.privateGet(state.currentAccountId)
+    userComponentToRender = (
+      <Widget src="sipars.testnet/widget/Certification" props={{ cred }} />
+    )
+  }
 }
 const isAdmin = true
-
+console.log('currentAccountId: ', state.currentAccountId, isAdmin)
 return (
   <>
     {state.currentAccountId.length > 0 ? (
       isAdmin ? (
         <Widget
-          src="sipars.near/widget/SimpleTable"
+          src="sipars.testnet/widget/PendingApplicationsTable"
           props={{
-            pendingApplications: Storage.privateGet('pendingApplications'),
+            pendingApplications:
+              Storage.privateGet('pendingApplications') || [],
             updatePendingApplications,
           }}
         />

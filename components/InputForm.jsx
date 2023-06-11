@@ -5,36 +5,36 @@ const Container = styled.div`
   align-items: center;
   height: 80vh;
   background-color: #1c1f2a;
-`;
+`
 
 const Heading = styled.h1`
   margin-top: 30px;
   margin-bottom: 60px;
   text-align: center;
   color: #8f73ff;
-`;
+`
 
 const FormContainer = styled.div`
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 600px; 
-  margin: 0 auto; 
-`;
+  max-width: 600px;
+  margin: 0 auto;
+`
 
 const FormGroup = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
-`;
+`
 
 const Label = styled.label`
   color: #e3e6ec;
   margin-bottom: 0.5rem;
   font-weight: bold;
   min-width: 100px;
-`;
+`
 
 const SubmitButton = styled.button`
   background-color: #8f73ff;
@@ -48,7 +48,7 @@ const SubmitButton = styled.button`
   &:hover {
     background-color: #b290ff;
   }
-`;
+`
 
 const Footer = styled.div`
   position: absolute;
@@ -59,31 +59,31 @@ const Footer = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
-`;
+`
 
 const HorizontalLine = styled.hr`
   width: 100%;
   border: none;
   border-top: 1px solid #e3e6ec;
   margin-bottom: 10px;
-`;
+`
 
 const FooterText = styled.p`
   font-size: 14px;
   color: #e3e6ec;
-`;
+`
 
-State.init({ fullName, matriculationNumber, email });
+State.init({ fullName, matriculationNumber, email })
 
 const onFullNameChange = ({ target }) => {
-  State.update({ fullName: target.value });
-};
+  State.update({ fullName: target.value })
+}
 const onMatriculationNumberChange = ({ target }) => {
-  State.update({ matriculationNumber: target.value });
-};
+  State.update({ matriculationNumber: target.value })
+}
 const onEmailChange = ({ target }) => {
-  State.update({ email: target.value });
-};
+  State.update({ email: target.value })
+}
 
 const onBtnClick = () => {
   const retVal = {
@@ -91,9 +91,9 @@ const onBtnClick = () => {
     matriculationNumber: state.matriculationNumber,
     email: state.email,
     address: props.state.currentAccountId,
-  };
-  props.addApplication(retVal);
-};
+  }
+  props.addPendingApplication(retVal)
+}
 
 return (
   <Container>
@@ -121,4 +121,4 @@ return (
       <FooterText>With Love from TBC &#x2665;</FooterText>
     </Footer>
   </Container>
-);
+)
