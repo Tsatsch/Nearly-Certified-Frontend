@@ -2,13 +2,21 @@ const Heading = styled.h1`
   margin-top: 30px;
   text-align: center;
   color: #8f73ff;
-`
+`;
 const SubHeading = styled.h2`
   color: #e3e6ec;
   margin-top: 20px;
   text-align: center;
+  font-size: 20px;
+`;
+
+const Heading3 = styled.h3`
+  color: #e3e6ec;
+  margin-top: 100px;
+  text-align: center;
   font-size: 18px;
-`
+`;
+
 const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -16,16 +24,16 @@ const LoginContainer = styled.div`
   align-items: center;
   height: 80vh;
   background-color: #1c1f2a;
-`
+`;
 
 const ButtonContainer = styled.div`
-  margin-top: 120px;
+  margin-top: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   border: 2px solid #e3e6ec;
   border-radius: 10px;
-`
+`;
 
 const Footer = styled.div`
   position: absolute;
@@ -36,19 +44,19 @@ const Footer = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
-`
+`;
 
 const HorizontalLine = styled.hr`
   width: 100%;
   border: none;
   border-top: 1px solid #e3e6ec;
   margin-bottom: 10px;
-`
+`;
 
 const FooterText = styled.p`
   font-size: 14px;
   color: #e3e6ec;
-`
+`;
 
 State.init({
   currentAccountId: '',
@@ -118,9 +126,11 @@ if (state.currentAccountId.length === 0)
   state.currentAccountId = getEVMAccountId()
 
 if (state.currentAccountId.length > 0) {
-    // Storage.privateSet('pendingApplications', undefined)
-    // Storage.privateSet('acceptedApplications', undefined)
-    // Storage.privateSet('rejectedApplications', undefined)
+  // Storage.privateSet("pendingApplications", undefined);
+  // Storage.privateSet("acceptedApplications", undefined);
+  // Storage.privateSet("rejectedApplications", undefined);
+  // Storage.privateSet("0x890bb55136b71898357716b2eb13c6ecfeda04e5", undefined);
+  // Storage.privateSet("0xaA8cAf7E17086678876740b6c8087eb632a7578D", undefined);
   console.log('sss: ', state.currentAccountId, isAdmin)
   const status = Storage.privateGet(state.currentAccountId)
   if (typeof status === 'undefined') {
@@ -161,7 +171,10 @@ return (
     ) : (
       <LoginContainer>
         <Heading>Welcome to the Login Page</Heading>
-        <SubHeading>Please login with your fancy wallet</SubHeading>
+        <SubHeading>
+          Start here with creation of an immutable and verifiable certificate
+        </SubHeading>
+        <Heading3>Please login with your fancy wallet</Heading3>
         <ButtonContainer>
           <Web3Connect
             className="swap-button-enabled swap-button-text p-2"
